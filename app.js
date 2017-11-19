@@ -1,10 +1,26 @@
 const express = require('express');
+const morgan = require('morgan');
+const path = require('path');
+const bodyParser = require('body-parser');
+
+const options = {
+	useMongoClient: true
+};
+
+mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+mongoose.connect('mongodb://localhost:27017/bookshop', options);
+
+moment = require('moment');
 
 const app = express();
+app.use(morgan('combined'));
 
-app.get('/', (req, res) => {
-	res.statusCode = 200;
-	res.send('<h1> Hi there ! </h1>');
-});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+router = express.Router();
+require(path.join(__dirname, 'routes'));
+app.use(router);
 
 app.listen(3000);
