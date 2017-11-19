@@ -9,7 +9,7 @@ const options = {
 
 mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost:27017/bookshop', options);
+mongoose.connect('mongodb://localhost:27017/shop', options);
 
 moment = require('moment');
 
