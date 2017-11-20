@@ -8,12 +8,27 @@ exports.createOne = createOne;
 exports.patchOne = patchOne;
 exports.removeOne = removeOne;
 
-function findAll() {}
+/**
+ * Return all books sort by publication date desc
+ */
+function findAll() {
+	return Book.find({}, {'__v': 0})
+		.sort({ publicationDate: -1 })
+		.exec();
+}
 
-function findOne() {}
+/**
+ * Return a single book by id
+ */
+function findOne(id) {
+	return Book.findById(id, {'__v': 0});
+}
 
 function findOneByAuthors() {}
 
+/**
+ * Create a single book
+ */
 function createOne(data) {
 	let book = new Book();
 	book.title = data.title;
