@@ -10,11 +10,10 @@ exports.removeOne = removeOne;
 function findAll(req, res) {
 	shop.findAll().then(
 		function (books) {
+			res.status(200);
 			if (!books.length) {
-				res.status(204);
-				res.json({ message: 'There is no book to display '});
+				res.json({ message: 'There are no books to display '});
 			} else {
-				res.status(200);
 				res.json(books);
 			}
 		},
@@ -60,4 +59,15 @@ function createOne(req, res) {
 
 function patchOne(req, res) {}
 
-function removeOne(req, res) {}
+function removeOne(req, res) {
+	shop.removeOne(req.params.id).then(
+		function () {
+			res.status(200);
+			res.json({ message: 'The book has been deleted properly '});
+		},
+		function (err) {
+			res.status(500);
+			res.json(err);
+		}
+	);
+}

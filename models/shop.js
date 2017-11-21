@@ -40,4 +40,9 @@ function createOne(data) {
 
 function patchOne() {}
 
-function removeOne() {}
+/** 
+ * Delete a single book
+ */
+function removeOne(id) {
+	return Book.findByIdAndRemove(id);
+}
