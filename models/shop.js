@@ -3,10 +3,11 @@ const Book = mongoose.model('Book', bookSchema.schema);
 
 exports.findAll = findAll;
 exports.findOne = findOne;
-exports.findOneByAuthors = findOneByAuthors;
 exports.createOne = createOne;
 exports.patchOne = patchOne;
 exports.removeOne = removeOne;
+exports.findOneByTitle = findOneByTitle;
+exports.findAllByAuthors = findAllByAuthors;
 
 /**
  * Return all books sort by publication date desc
@@ -23,8 +24,6 @@ function findAll() {
 function findOne(id) {
 	return Book.findById(id, {'__v': 0});
 }
-
-function findOneByAuthors() {}
 
 /**
  * Create a single book
@@ -46,3 +45,12 @@ function patchOne() {}
 function removeOne(id) {
 	return Book.findByIdAndRemove(id);
 }
+
+/**
+ * Return a single book by title
+ */
+function findOneByTitle(title) {
+	return Book.findOne({ title: title }, {'__v': 0});
+}
+
+function findAllByAuthors() {}

@@ -2,10 +2,11 @@ const shop = require('../models/shop');
 
 exports.findAll = findAll;
 exports.findOne = findOne;
-exports.findOneByAuthors = findOneByAuthors;
 exports.createOne = createOne;
 exports.patchOne = patchOne;
 exports.removeOne = removeOne;
+exports.findOneByTitle = findOneByTitle;
+exports.findAllByAuthors = findAllByAuthors;
 
 function findAll(req, res) {
 	shop.findAll().then(
@@ -42,8 +43,6 @@ function findOne(req, res) {
 	);
 }
 
-function findOneByAuthors(req, res) {}
-
 function createOne(req, res) {
 	shop.createOne(req.body).then(
 		function () {
@@ -71,3 +70,23 @@ function removeOne(req, res) {
 		}
 	);
 }
+
+function findOneByTitle(req, res) {
+	shop.findOneByTitle(req.params.title).then(
+		function (book) {
+			if (book === null) {
+				res.status(404);
+				res.json({ message: 'This book title does not exist '});
+			} else {
+				res.status(200);
+				res.json(book);
+			}
+		},
+		function (err) {
+			res.status(500);
+			res.json(err);
+		}
+	);
+}
+
+function findAllByAuthors(req, res) {}
