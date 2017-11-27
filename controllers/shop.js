@@ -9,6 +9,12 @@ exports.findOneByTitle = findOneByTitle;
 exports.findAllByAuthors = findAllByAuthors;
 
 function findAll(req, res) {
+
+	if (req.query.title) {
+		findAllMatchingTitle(req, res);
+		return;
+	}
+
 	shop.findAll().then(
 		function (books) {
 			res.status(200);
@@ -80,6 +86,23 @@ function findOneByTitle(req, res) {
 			} else {
 				res.status(200);
 				res.json(book);
+			}
+		},
+		function (err) {
+			res.status(500);
+			res.json(err);
+		}
+	);
+}
+
+function findAllMatchingTitle(req, res) {
+	shop.findAllMatchingTitle(req.query.title).then(
+		function (books) {
+			res.status(200);
+			if (!books.length) {
+				res.json({ message: 'This title can not match any books '});
+			} else {
+				res.json(books);
 			}
 		},
 		function (err) {

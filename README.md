@@ -31,9 +31,10 @@ A really nice article to read : https://blog.octo.com/en/design-a-rest-api/
 | HTTP VERB |           ENDPOINT           |            DESCRIPTION           |
 |-----------|------------------------------|----------------------------------|
 |    GET    | /shop/books 	               | Get all books                    |
-|    POST   | /shop/books                  | Create a book                    |
-|    GET    | /shop/books/:id              | Find a book by id                |
+|    GET    | /shop/books?title=foo        | Get all books matching title     |
+|    POST   | /shop/books                  | Create a single book             |
+|    GET    | /shop/books/:id              | Find a single book               |
 |    PATCH  | /shop/books/:id              | Update partially a single book   |
 |    DELETE | /shop/books/:id              | Delete a single book             |
-|    GET    | /shop/books/title/:title     | Find a book by title             |
+|    GET    | /shop/books/title/:title     | Find a single book by title      |
 |    GET    | /shop/books/authors/:authors | Find all books by author(s)      |

@@ -7,6 +7,7 @@ exports.createOne = createOne;
 exports.patchOne = patchOne;
 exports.removeOne = removeOne;
 exports.findOneByTitle = findOneByTitle;
+exports.findAllMatchingTitle = findAllMatchingTitle;
 exports.findAllByAuthors = findAllByAuthors;
 
 /**
@@ -51,6 +52,15 @@ function removeOne(id) {
  */
 function findOneByTitle(title) {
 	return Book.findOne({ title: title }, {'__v': 0});
+}
+
+/**
+* Return all books matching title
+*/
+function findAllMatchingTitle(title) {
+	return Book.find({ title: new RegExp(title, 'i')})
+		.sort({ publicationDate: -1 })
+		.exec();
 }
 
 function findAllByAuthors() {}
