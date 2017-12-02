@@ -123,4 +123,28 @@ function findAllMatchingTitle(req, res) {
 	);
 }
 
-function findAllByAuthors(req, res) {}
+function findAllByAuthors(req, res) {
+
+	if (req.params.authors.search(',') != -1) {
+		var authors = req.params.authors.split(',');
+		var authors_msg = 'These authors can not match any books ';
+	} else {
+		var authors = req.params.authors;
+		var authors_msg = 'This author can not match any books ';
+	}
+
+	shop.findAllByAuthors(authors).then(
+		function(books) {
+			res.status(200);
+			if (!books.length) {
+				res.json({ message: authors_msg});
+			} else {
+				res.json(books);
+			}
+		},
+		function (err) {
+			res.status(500);
+			res.json(err);
+		}
+	);
+}

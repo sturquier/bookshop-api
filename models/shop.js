@@ -66,12 +66,19 @@ function findOneByTitle(title) {
 }
 
 /**
-* Return all books matching title & sort by publication date desc
-*/
+ * Return all books matching title & sort by publication date desc
+ */
 function findAllMatchingTitle(title) {
 	return Book.find({ title: new RegExp(title, 'i')})
 		.sort({ publicationDate: -1 })
 		.exec();
 }
 
-function findAllByAuthors() {}
+/**
+ * Return all books by author(s) & sort by publication date desc
+ */
+function findAllByAuthors(authors) {
+	return Book.find({ authors: authors }, {'__v': 0})
+		.sort({ publicationDate: -1 })
+		.exec();
+}
