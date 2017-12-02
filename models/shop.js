@@ -38,7 +38,18 @@ function createOne(data) {
 	return book.save();
 }
 
-function patchOne() {}
+/**
+ * Patch a single book 
+ */
+function patchOne(id, data) {
+	return Book.findById(id, (err, book) => {
+		book.title = data.title ? data.title: book.title;
+		book.publicationDate = data.publicationDate ? data.publicationDate: book.publicationDate;
+		book.authors = data.authors ? data.authors: book.authors;
+
+		book.save();
+	});
+}
 
 /** 
  * Delete a single book
@@ -55,7 +66,7 @@ function findOneByTitle(title) {
 }
 
 /**
-* Return all books matching title
+* Return all books matching title & sort by publication date desc
 */
 function findAllMatchingTitle(title) {
 	return Book.find({ title: new RegExp(title, 'i')})

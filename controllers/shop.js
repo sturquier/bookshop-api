@@ -62,7 +62,18 @@ function createOne(req, res) {
 	);
 }
 
-function patchOne(req, res) {}
+function patchOne(req, res) {
+	shop.patchOne(req.params.id, req.body).then(
+		function () {
+			res.status(200);
+			res.json({ message: 'The book has been patched properly '});
+		},
+		function (err) {
+			res.status(500);
+			res.json(err);
+		}
+	);
+}
 
 function removeOne(req, res) {
 	shop.removeOne(req.params.id).then(

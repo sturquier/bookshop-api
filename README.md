@@ -26,7 +26,7 @@ A really nice article to read : https://blog.octo.com/en/design-a-rest-api/
 * Install all dependencies `npm install`
 * Run MongoDB server : `mongod`
 * Run API : `node app.js` ( or `nodemon app.js`)
-* The API is now accessible. Have fun with Postman, CURL or any application you want ! :)
+* The API is now accessible. Have fun with Postman, CURL or any application you want
 
 | HTTP VERB |           ENDPOINT           |            DESCRIPTION           |
 |-----------|------------------------------|----------------------------------|
