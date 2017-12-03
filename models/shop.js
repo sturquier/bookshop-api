@@ -32,7 +32,7 @@ function findOne(id) {
 function createOne(data) {
 	let book = new Book();
 	book.title = data.title;
-	book.publicationDate = new Date();
+	book.publicationDate = data.publicationDate;
 	book.authors = data.authors;
 
 	return book.save();
